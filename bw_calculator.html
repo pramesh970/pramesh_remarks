@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokia Support</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <b>Wireless Speed Calculator</b>
+
+    <nav class="navbar">
+        <a href="index.html"><img src="img/turtle.png" alt="Clickable Image" width="50"></a>
+        <a href="onu.html"><img src="img/wifi.png" alt="Clickable Image" width="50"></a>
+        <a href="tv.html"><img src="img/smart-tv.png" alt="Clickable Image" width="50"></a>
+        <a href="hotspot.html"><img src="img/hotspot.png" alt="Clickable Image" width="50"></a>
+        <a href="bw_calculator.html"><img src="img/calculator.png" alt="Clickable Image" width="50"></a>
+    </nav>
+
+    <div class="calculator">
+        <h2>Wireless Speed Calculator <span style="font-size: 12px;"></span></h2>
+        <div class="form-group">
+            <label for="bandwidth">Total Bandwidth (in Mbps):</label>
+            <input type="number" id="bandwidth" placeholder="Enter total bandwidth in Mbps" min="0">
+        </div>
+        <div class="form-group">
+            <label for="standard">Wireless Standard:</label>
+            <select id="standard">
+                <option value="0.5">802.11n (Wi-Fi 4)</option>
+                <option value="0.6">802.11ac (Wi-Fi 5)</option>
+                <option value="0.8">802.11ax (Wi-Fi 6)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="devices">Number of Devices:</label>
+            <input type="number" id="devices" min="1" value="1">
+        </div>
+        <button onclick="calculateSpeed()">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateSpeed() {
+            const bandwidth = parseFloat(document.getElementById("bandwidth").value);
+            const standard = parseFloat(document.getElementById("standard").value);
+            const devices = parseInt(document.getElementById("devices").value);
+            const resultDiv = document.getElementById("result");
+
+            if (isNaN(bandwidth) || isNaN(standard) || isNaN(devices) || bandwidth <= 0 || devices <= 0) {
+                resultDiv.textContent = "Please enter valid values.";
+                resultDiv.style.display = "block";
+                return;
+            }
+
+            // Approximate efficiency factor based on wireless standard (e.g., 50%, 60%, 80%)
+            const effectiveBandwidth = bandwidth * standard;
+            const speedPerDevice = effectiveBandwidth / devices;
+
+            resultDiv.textContent = `Estimated Speed per Device: ${speedPerDevice.toFixed(2)} Mbps`;
+            resultDiv.style.display = "block";
+        }
+    </script>
+
+    
+</span></pre>
+    </div>
+    <div class="footer">    
+        &copy; <span id="year">2025</span> <span class="name">Pramesh Rai</span>. All rights public enjoy.
+    </div>
+
+</body>
+</html>
